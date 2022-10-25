@@ -12,7 +12,7 @@ source:
         - 0001-libcxx.patch                   # [linux]
 
 build:
-    number: 1
+    number: 2
     run_exports:
     # FIXME: Adjust pin according to future ABI compatability guarantees
       - {{ pin_subpackage('qtmolecularnetwork', max_pin='x.x.x') }}
