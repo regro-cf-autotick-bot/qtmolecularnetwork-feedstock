@@ -15,3 +15,6 @@ if errorlevel 1 exit 1
 
 cmake --build . --config %CMAKE_CONFIG% --target install
 if errorlevel 1 exit 1
+
+rmdir /S /Q %LIBRARY_PREFIX%\license
+if errorlevel 1 exit 1 
