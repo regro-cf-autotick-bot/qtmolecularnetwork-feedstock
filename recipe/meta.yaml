@@ -1,69 +1,69 @@
 {% set name = "qt6molecularnetwork" %}
 {% set binding_name = "pyside6mn" %}
-{% set version = "0.7.0" %}
+{% set version = "0.7.1" %}
 
 package:
-    name: {{ name|lower }}
-    version: {{ version }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-    url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-    sha256: ee67fea252e3a89b6476c982092e293e883007b14166495a4252f752aadd286a
+  url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
+  sha256: c173d68b810eb1f9d5399355799574b5c14ba08c1314c0f1032a1a5c42d257ac
 
 build:
-    number: 1
-    run_exports:
-      - {{ pin_subpackage(name, max_pin='x.x.x') }}
-    ignore_run_exports_from:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name, max_pin='x.x.x') }}
+  ignore_run_exports_from:
     # Just used to satisfy CMake; not used in shared library
-      - cairo
-      - freetype
+    - cairo
+    - freetype
 
 requirements:
-    build:
-        - cmake
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - make                                # [not win]
-        - {{ cdt('mesa-libgl-devel') }}       # [linux]
-        - {{ cdt('mesa-libegl-devel') }}      # [linux]
-        - {{ cdt('mesa-dri-drivers') }}       # [linux]
-        - {{ cdt('libglvnd-opengl') }}        # [linux]
-        - {{ cdt('libselinux') }}             # [linux]
-        - {{ cdt('libxdamage') }}             # [linux]
-        - {{ cdt('libxxf86vm') }}             # [linux]
-        - {{ cdt('libxext') }}                # [linux]
-        - sysroot_linux-64 2.17               # [linux]
-    host:
-        - cairo
-        - freetype
-        - boost-cpp
-        - eigen
-        - qt6-main
-        - {{ pin_compatible('rdkit', max_pin='x.x') }}
-        - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}  # [win]
-        - versioneer
-        - tomli          # [py<311]
-    run:
-        - {{ pin_compatible('rdkit', max_pin='x.x') }}
-    run_constrained:
-        - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.14") }}  # [osx and x86_64]
+  build:
+    - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make                                    # [not win]
+    - {{ cdt('mesa-libgl-devel') }}           # [linux]
+    - {{ cdt('mesa-libegl-devel') }}          # [linux]
+    - {{ cdt('mesa-dri-drivers') }}           # [linux]
+    - {{ cdt('libglvnd-opengl') }}            # [linux]
+    - {{ cdt('libselinux') }}                 # [linux]
+    - {{ cdt('libxdamage') }}                 # [linux]
+    - {{ cdt('libxxf86vm') }}                 # [linux]
+    - {{ cdt('libxext') }}                    # [linux]
+    - sysroot_linux-64 2.17                   # [linux]
+  host:
+    - cairo
+    - freetype
+    - boost-cpp
+    - eigen
+    - qt6-main
+    - {{ pin_compatible('rdkit', max_pin='x.x') }}
+    - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}      # [win]
+    - versioneer
+    - tomli              # [py<311]
+  run:
+    - {{ pin_compatible('rdkit', max_pin='x.x') }}
+  run_constrained:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.14") }}      # [osx and x86_64]
 
 
 test:
-    commands:
-        - if not exist %LIBRARY_BIN%\\{{ name }}.dll exit 1                             # [win]
-        - if not exist %LIBRARY_INC%\\{{ name }}\\node.h exit 1                         # [win]
-        - if not exist %LIBRARY_LIB%\\cmake\\{{ name }}\\{{ name }}Config.cmake exit 1  # [win]
-        - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}                                 # [unix]
-        - test -f $PREFIX/include/{{ name }}/node.h                                     # [unix]
-        - test -f $PREFIX/lib/cmake/{{ name }}/{{ name }}Config.cmake                   # [unix]
+  commands:
+    - if not exist %LIBRARY_BIN%\\{{ name }}.dll exit 1                                 # [win]
+    - if not exist %LIBRARY_INC%\\{{ name }}\\node.h exit 1                             # [win]
+    - if not exist %LIBRARY_LIB%\\cmake\\{{ name }}\\{{ name }}Config.cmake exit 1      # [win]
+    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}                                     # [unix]
+    - test -f $PREFIX/include/{{ name }}/node.h                                         # [unix]
+    - test -f $PREFIX/lib/cmake/{{ name }}/{{ name }}Config.cmake                       # [unix]
 
 outputs:
   - name: {{ name }}
   - name: {{ binding_name }}
     script: build-python.sh  # [unix]
-    script: bld-python.bat   # [win]
+    script: bld-python.bat  # [win]
     build:
       ignore_run_exports_from:
       # Just used for shiboken/pyside2 not used for python module
@@ -110,14 +110,14 @@ outputs:
         - PySide6MolecularNetwork.qmn
 
 about:
-    home: https://github.com/metgem/QtMolecularNetwork
-    license: GPL-3.0-or-later
-    license_family: GPL
-    license_file: 'LICENSE'
-    summary: 'Widgets used for visualisation of graph in MetGem'
-    description: 'Widgets used for visualisation of graph in `MetGem`'
-    dev_url: 'https://github.com/metgem/QtMolecularNetwork'
+  home: https://github.com/metgem/QtMolecularNetwork
+  license: GPL-3.0-or-later
+  license_family: GPL
+  license_file: 'LICENSE'
+  summary: 'Widgets used for visualisation of graph in MetGem'
+  description: 'Widgets used for visualisation of graph in `MetGem`'
+  dev_url: 'https://github.com/metgem/QtMolecularNetwork'
 
 extra:
-    recipe-maintainers:
-      - n-elie
+  recipe-maintainers:
+    - n-elie
