@@ -35,7 +35,7 @@ requirements:
   host:
     - cairo
     - freetype
-    - libboost-headers
+    - libboost-devel
     - eigen
     - qt6-main
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
