@@ -9,7 +9,7 @@ source:
   sha256: c173d68b810eb1f9d5399355799574b5c14ba08c1314c0f1032a1a5c42d257ac
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
@@ -35,7 +35,7 @@ requirements:
   host:
     - cairo
     - freetype
-    - boost-cpp
+    - libboost-headers
     - eigen
     - qt6-main
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
