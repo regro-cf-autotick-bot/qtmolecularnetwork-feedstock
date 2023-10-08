@@ -1,9 +1,7 @@
-{% set name = "qt6molecularnetwork" %}
-{% set binding_name = "pyside6mn" %}
 {% set version = "0.7.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: qt6molecularnetwork
   version: {{ version }}
 
 source:
@@ -13,7 +11,7 @@ source:
 build:
   number: 0
   run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x.x') }}
+    - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
     # Just used to satisfy CMake; not used in shared library
     - cairo
@@ -52,16 +50,16 @@ requirements:
 
 test:
   commands:
-    - if not exist %LIBRARY_BIN%\\{{ name }}.dll exit 1                                 # [win]
-    - if not exist %LIBRARY_INC%\\{{ name }}\\node.h exit 1                             # [win]
-    - if not exist %LIBRARY_LIB%\\cmake\\{{ name }}\\{{ name }}Config.cmake exit 1      # [win]
-    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}                                     # [unix]
-    - test -f $PREFIX/include/{{ name }}/node.h                                         # [unix]
-    - test -f $PREFIX/lib/cmake/{{ name }}/{{ name }}Config.cmake                       # [unix]
+    - if not exist %LIBRARY_BIN%\qt6molecularnetwork.dll exit 1                                     # [win]
+    - if not exist %LIBRARY_INC%\qt6molecularnetwork\node.h exit 1                                  # [win]
+    - if not exist %LIBRARY_LIB%\cmake\qt6molecularnetwork\qt6molecularnetworkConfig.cmake exit 1   # [win]
+    - test -f $PREFIX/lib/libqt6molecularnetwork${SHLIB_EXT}                                        # [unix]
+    - test -f $PREFIX/include/qt6molecularnetwork/node.h                                            # [unix]
+    - test -f $PREFIX/lib/cmake/qt6molecularnetwork/qt6molecularnetworkConfig.cmake                 # [unix]
 
 outputs:
-  - name: {{ name }}
-  - name: {{ binding_name }}
+  - name: qt6molecularnetwork
+  - name: pyside6mn
     script: build-python.sh  # [unix]
     script: bld-python.bat  # [win]
     build:
@@ -84,7 +82,7 @@ outputs:
         - {{ cdt('libxxf86vm') }}             # [linux]
         - {{ cdt('libxext') }}                # [linux]
       host:
-        - {{ pin_subpackage(name, exact=True) }}
+        - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}
         - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}  # [win]
         - {{ pin_compatible('rdkit', max_pin='x.x') }}
         - python
@@ -99,7 +97,7 @@ outputs:
         - freetype
       run:
         - python
-        - {{ pin_subpackage(name, exact=True) }}
+        - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}
         - {{ pin_compatible('rdkit', max_pin='x.x') }}
         - pywin32                             # [win]
         - pyside6
