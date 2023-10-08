@@ -16,6 +16,7 @@ build:
     # Just used to satisfy CMake; not used in shared library
     - cairo
     - freetype
+    - libboost-devel
 
 requirements:
   build:
@@ -67,6 +68,7 @@ outputs:
       # Just used for shiboken/pyside2 not used for python module
         - clangdev  # [not osx]
         - libcxx    # [not osx]
+        - libboost-devel
     requirements:
       build:
         - {{ compiler('c') }}
