@@ -91,6 +91,7 @@ outputs:
         - {{ pin_compatible('qt6-main', max_pin='x.x') }}
         - versioneer
         - eigen
+        - libboost-devel
         - pip
         - setuptools
         - cairo
