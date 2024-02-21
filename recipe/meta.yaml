@@ -1,4 +1,4 @@
-{% set version = "0.7.1" %}
+{% set version = "0.7.3" %}
 
 package:
   name: qt6molecularnetwork
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-  sha256: c173d68b810eb1f9d5399355799574b5c14ba08c1314c0f1032a1a5c42d257ac
+  sha256: cb6a88ba665795c06b3a949ec832497b25f9def62ac31c0f980e2978cdbf16d4
 
 build:
-  number: 2
+  number: 0
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
@@ -38,7 +38,7 @@ requirements:
     - freetype
     - libboost-devel
     - eigen
-    - qt6-main
+    - qt6-main <6.6.2
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
     - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}      # [win]
     - versioneer
@@ -88,9 +88,9 @@ outputs:
         - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}  # [win]
         - {{ pin_compatible('rdkit', max_pin='x.x') }}
         - python
-        - pyside6
         - cmake-build-extension
         - {{ pin_compatible('qt6-main', max_pin='x.x') }}
+        - pyside6
         - versioneer
         - eigen
         - libboost-devel
