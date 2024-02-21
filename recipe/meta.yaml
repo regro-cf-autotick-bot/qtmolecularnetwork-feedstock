@@ -88,9 +88,9 @@ outputs:
         - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}  # [win]
         - {{ pin_compatible('rdkit', max_pin='x.x') }}
         - python
-        - pyside6
         - cmake-build-extension
-        - {{ pin_compatible('qt6-main', max_pin='x.x') }}
+        - qt6-main
+        - pyside6
         - versioneer
         - eigen
         - libboost-devel
