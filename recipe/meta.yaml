@@ -1,4 +1,4 @@
-{% set version = "0.7.2" %}
+{% set version = "0.7.3" %}
 
 package:
   name: qt6molecularnetwork
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-  sha256: 168467056ae4f11f553576d58a94ccbb9e27bec751bc70668092c0e13c74ffc9
+  sha256: cb6a88ba665795c06b3a949ec832497b25f9def62ac31c0f980e2978cdbf16d4
 
 build:
   number: 0
