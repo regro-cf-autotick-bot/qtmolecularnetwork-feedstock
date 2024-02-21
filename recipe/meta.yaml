@@ -38,7 +38,7 @@ requirements:
     - freetype
     - libboost-devel
     - eigen
-    - qt6-main
+    - qt6-main <6.6.2
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
     - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}      # [win]
     - versioneer
@@ -89,7 +89,7 @@ outputs:
         - {{ pin_compatible('rdkit', max_pin='x.x') }}
         - python
         - cmake-build-extension
-        - qt6-main
+        - {{ pin_compatible('qt6-main', max_pin='x.x') }}
         - pyside6
         - versioneer
         - eigen
