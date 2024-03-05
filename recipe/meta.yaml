@@ -6,10 +6,12 @@ package:
 
 source:
   url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-  sha256: cb6a88ba665795c06b3a949ec832497b25f9def62ac31c0f980e2978cdbf16d4
+  sha256: 839938b748ac394419183f1108b5526b73a3cd49be0ae5fd1efbc526f4737394
+  patches:
+    - 0001-setup.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
@@ -38,7 +40,7 @@ requirements:
     - freetype
     - libboost-devel
     - eigen
-    - qt6-main <6.6.2
+    - qt6-main
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
     - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}      # [win]
     - versioneer
