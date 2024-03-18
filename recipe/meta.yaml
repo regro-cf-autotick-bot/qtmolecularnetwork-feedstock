@@ -1,4 +1,4 @@
-{% set version = "0.7.3" %}
+{% set version = "0.7.4" %}
 
 package:
   name: qt6molecularnetwork
@@ -6,12 +6,10 @@ package:
 
 source:
   url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-  sha256: 839938b748ac394419183f1108b5526b73a3cd49be0ae5fd1efbc526f4737394
-  patches:
-    - 0001-setup.patch
+  sha256: 728e03771039c86026e29ffcdaa5bc8c6f81d86a72b99b22ba57d441b5427bcc
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
