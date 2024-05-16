@@ -1,4 +1,4 @@
-{% set version = "0.7.4" %}
+{% set version = "0.7.5" %}
 
 package:
   name: qt6molecularnetwork
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-  sha256: 728e03771039c86026e29ffcdaa5bc8c6f81d86a72b99b22ba57d441b5427bcc
+  sha256: 47ef9e120fe47c14b82a9b3cf0939c354a33c7d5e138922d3a19e2929efa295c
 
 build:
   number: 0
@@ -22,6 +22,7 @@ requirements:
   build:
     - cmake
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - make                                    # [not win]
     - {{ cdt('mesa-libgl-devel') }}           # [linux]
@@ -32,7 +33,6 @@ requirements:
     - {{ cdt('libxdamage') }}                 # [linux]
     - {{ cdt('libxxf86vm') }}                 # [linux]
     - {{ cdt('libxext') }}                    # [linux]
-    - sysroot_linux-64 2.17                   # [linux]
   host:
     - cairo
     - freetype
@@ -46,7 +46,6 @@ requirements:
   run:
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
   run_constrained:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.14") }}      # [osx and x86_64]
 
 
 test:
@@ -72,6 +71,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - clangdev
         - cmake
