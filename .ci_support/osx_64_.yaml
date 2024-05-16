@@ -6,6 +6,10 @@ c_compiler:
 - clang
 c_compiler_version:
 - '16'
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
+- '11.0'
 cairo:
 - '1'
 channel_sources:
@@ -33,7 +37,7 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 qt6_main:
-- '6.6'
+- '6.7'
 target_platform:
 - osx-64
 zip_keys:
