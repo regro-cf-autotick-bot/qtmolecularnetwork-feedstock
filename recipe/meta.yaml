@@ -10,7 +10,6 @@ source:
 
 build:
   number: 1
-  skip: true  # [py<39]
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
@@ -63,6 +62,7 @@ outputs:
     script: build-python.sh  # [unix]
     script: bld-python.bat  # [win]
     build:
+      skip: true  # [py<39]
       ignore_run_exports_from:
       # Just used for shiboken/pyside2 not used for python module
         - clangdev  # [not osx]
