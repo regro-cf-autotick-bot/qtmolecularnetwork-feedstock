@@ -102,6 +102,7 @@ outputs:
         - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}
         - {{ pin_compatible('rdkit', max_pin='x.x') }}
         - pywin32                             # [win]
+        - pyside6
         - tinycss2
     test:
       imports:
