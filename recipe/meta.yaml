@@ -90,7 +90,6 @@ outputs:
         - python
         - cmake-build-extension
         - {{ pin_compatible('pyside6', max_pin='x.x') }}
-        - pyside6
         - versioneer
         - eigen
         - libboost-devel
