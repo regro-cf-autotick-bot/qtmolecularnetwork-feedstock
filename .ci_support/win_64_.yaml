@@ -1,5 +1,7 @@
 c_compiler:
 - vs2019
+c_stdlib:
+- vs
 cairo:
 - '1'
 channel_sources:
@@ -11,7 +13,7 @@ cxx_compiler:
 freetype:
 - '2'
 libboost_devel:
-- '1.82'
+- '1.84'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -23,6 +25,6 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 qt6_main:
-- '6.6'
+- '6.7'
 target_platform:
 - win-64

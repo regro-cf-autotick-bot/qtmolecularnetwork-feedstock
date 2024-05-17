@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-  sha256: 728e03771039c86026e29ffcdaa5bc8c6f81d86a72b99b22ba57d441b5427bcc
+  sha256: ee87527e668c4998690a665d91c9c465e5f23061cbd41f3b776ed1b8702c362f
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
@@ -22,6 +22,7 @@ requirements:
   build:
     - cmake
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - make                                    # [not win]
     - {{ cdt('mesa-libgl-devel') }}           # [linux]
@@ -32,7 +33,6 @@ requirements:
     - {{ cdt('libxdamage') }}                 # [linux]
     - {{ cdt('libxxf86vm') }}                 # [linux]
     - {{ cdt('libxext') }}                    # [linux]
-    - sysroot_linux-64 2.17                   # [linux]
   host:
     - cairo
     - freetype
@@ -45,8 +45,6 @@ requirements:
     - tomli              # [py<311]
   run:
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
-  run_constrained:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.14") }}      # [osx and x86_64]
 
 
 test:
@@ -64,6 +62,7 @@ outputs:
     script: build-python.sh  # [unix]
     script: bld-python.bat  # [win]
     build:
+      skip: true  # [py<39]
       ignore_run_exports_from:
       # Just used for shiboken/pyside2 not used for python module
         - clangdev  # [not osx]
@@ -72,6 +71,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - clangdev
         - cmake
@@ -89,7 +89,7 @@ outputs:
         - {{ pin_compatible('rdkit', max_pin='x.x') }}
         - python
         - cmake-build-extension
-        - {{ pin_compatible('qt6-main', max_pin='x.x') }}
+        - {{ pin_compatible('pyside6', max_pin='x.x') }}
         - pyside6
         - versioneer
         - eigen
