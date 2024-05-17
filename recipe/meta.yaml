@@ -1,4 +1,4 @@
-{% set version = "0.7.4" %}
+{% set version = "0.7.5" %}
 
 package:
   name: qt6molecularnetwork
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz
-  sha256: ee87527e668c4998690a665d91c9c465e5f23061cbd41f3b776ed1b8702c362f
+  sha256: 47ef9e120fe47c14b82a9b3cf0939c354a33c7d5e138922d3a19e2929efa295c
 
 build:
   number: 1
@@ -90,7 +90,6 @@ outputs:
         - python
         - cmake-build-extension
         - {{ pin_compatible('pyside6', max_pin='x.x') }}
-        - pyside6
         - versioneer
         - eigen
         - libboost-devel
