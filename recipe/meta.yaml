@@ -10,6 +10,7 @@ source:
 
 build:
   number: 1
+  skip: true  # [py<39]
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
@@ -45,7 +46,6 @@ requirements:
     - tomli              # [py<311]
   run:
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
-  run_constrained:
 
 
 test:
