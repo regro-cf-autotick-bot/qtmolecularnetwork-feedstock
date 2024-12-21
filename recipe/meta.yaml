@@ -9,7 +9,7 @@ source:
   sha256: ad38c48193c815473d6104687cc973f35486deb58a149528cc8fec6e1191fd8e
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
