@@ -36,7 +36,7 @@ python:
 - 3.12.* *_cpython
 - 3.9.* *_cpython
 qt6_main:
-- '6.7'
+- '6.8'
 target_platform:
 - osx-64
 zip_keys:
