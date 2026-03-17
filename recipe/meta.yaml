@@ -9,7 +9,7 @@ source:
   sha256: ad38c48193c815473d6104687cc973f35486deb58a149528cc8fec6e1191fd8e
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}
   ignore_run_exports_from:
@@ -28,14 +28,6 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - make                                    # [not win]
-    - {{ cdt('mesa-libgl-devel') }}           # [linux]
-    - {{ cdt('mesa-libegl-devel') }}          # [linux]
-    - {{ cdt('mesa-dri-drivers') }}           # [linux]
-    - {{ cdt('libglvnd-opengl') }}            # [linux]
-    - {{ cdt('libselinux') }}                 # [linux]
-    - {{ cdt('libxdamage') }}                 # [linux]
-    - {{ cdt('libxxf86vm') }}                 # [linux]
-    - {{ cdt('libxext') }}                    # [linux]
   host:
     - cairo
     - freetype
@@ -49,6 +41,8 @@ requirements:
     - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}      # [win]
     - versioneer
     - tomli              # [py<311]
+    - libgl-devel                             # [linux]
+    - libegl-devel                            # [linux]
   run:
     - {{ pin_compatible('rdkit', max_pin='x.x') }}
 
@@ -83,12 +77,6 @@ outputs:
         - cmake
         - make                                # [not win]
         - libcxx                              # [linux]
-        - {{ cdt('mesa-libgl-devel') }}       # [linux]
-        - {{ cdt('mesa-dri-drivers') }}       # [linux]
-        - {{ cdt('libselinux') }}             # [linux]
-        - {{ cdt('libxdamage') }}             # [linux]
-        - {{ cdt('libxxf86vm') }}             # [linux]
-        - {{ cdt('libxext') }}                # [linux]
       host:
         - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}
         - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}  # [win]
@@ -104,6 +92,7 @@ outputs:
         - setuptools
         - cairo
         - freetype
+        - libgl-devel                         # [linux]
       run:
         - python
         - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}
